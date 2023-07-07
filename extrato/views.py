@@ -44,8 +44,11 @@ def novo_valor(request):
 
         conta.save()
         #TODO: Mensagem processada de acordo com o tipo
-        
-        messages.add_message(request, constants.SUCCESS, 'Entrada/saída cadastrada com sucesso')
+        #messages.add_message(request, constants.SUCCESS, 'Entrada/saída cadastrada com sucesso')
+        if(tipo == 'S'):
+            messages.add_message(request, constants.SUCCESS, 'Saída cadastrada com sucesso!')
+        else:
+            messages.add_message(request, constants.SUCCESS, 'Entrada cadastrada com sucesso!')
         return redirect('/extrato/novo_valor')
         
 def view_extrato(request):
