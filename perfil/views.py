@@ -69,7 +69,7 @@ def cadastrar_categoria(request):
 
     categoria.save()
 
-    messages.add_message(request, constants.SUCCESS, 'Categoria cadastrada com sucesso')
+    messages.add_message(request, constants.SUCCESS, 'Entrada/saída cadastrada com sucesso')
     return redirect('/perfil/gerenciar/')
 
 def update_categoria(request, id):
