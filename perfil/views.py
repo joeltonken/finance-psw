@@ -4,6 +4,7 @@ from .models import Conta, Categoria
 from django.contrib import messages
 from django.contrib.messages import constants
 from .utils import calcula_total 
+from extrato.models import Valores
 
 # Create your views here.
 def home(request):
@@ -86,6 +87,11 @@ def dashboard(request):
     categorias = Categoria.objects.all()
 
     for categoria in categorias:
-        dados[categoria.categoria] = Valores.objects.filter(categoria=categoria).aggregate(Sum('valor'))['valor__sum']
+        total = 0
+        valores = Valores.objects.filter(categoria=categoria)
+        for v in valores:
+            total = total + v.valor
+            
+        dados[categoria.categoria] = total
 
     return render(request, 'dashboard.html', {'labels': list(dados.keys()), 'values': list(dados.values())})
