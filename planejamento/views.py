@@ -19,4 +19,5 @@ def update_valor_categoria(request, id):
 
 def ver_planejamento(request):
     categorias = Categoria.objects.all()
+    #TODO: Realizar barra com total
     return render(request, 'ver_planejamento.html', {'categorias': categorias})
